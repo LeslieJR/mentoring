@@ -1,5 +1,6 @@
 const server = require('./server')
 
-server.listen(server.get('port'), ()=>{
-    console.log('server running on port: ',server.get('port'))
+const PORT = server.get('port')
+server.listen(PORT, ()=>{
+    console.log(`server running on port: ${PORT}`)
 })
