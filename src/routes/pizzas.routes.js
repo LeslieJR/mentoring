@@ -1,12 +1,8 @@
-const {Router} = require('express')
+const {Router} = require('express');
+const controller = require('../controllers/pizza.controller');
 
-const router = Router()
+const router = Router();
 
-router.post('/create', (req, res)=> {
-    res.send('new pizza')
-})
-router.get('/get/:id', (req, res)=> {
-    res.send('pizza')
-})
+router.post('/', controller.create);
 
-module.exports = router
+module.exports = router;

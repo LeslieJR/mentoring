@@ -19,4 +19,14 @@ server.use('/pizza', routes.pizza)
     res.send("Hello World!");
   }); */
 
+
+const db = require("./models/index");
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
+
 module.exports = server;
