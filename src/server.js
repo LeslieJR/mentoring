@@ -5,6 +5,7 @@ const routes = require('./routes')
 
 const server = express();
 const PORT = process.env.PORT || 8080;
+console.log('process.env.PORT:', process.env.PORT)
 server.set("port", PORT);
 
 //Node Middlewares

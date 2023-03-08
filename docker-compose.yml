@@ -3,13 +3,23 @@ services:
     image: node:18-alpine
     command: sh -c "yarn install && yarn run dev"
     ports:
-      - 3000:3000
+      - 8080:8080
     working_dir: /app
     volumes:
       - ./:/app
     depends_on:
       - db
-  db:
-    image: postgres
     environment:
-      POSTGRES_PASSWORD: test
+      PORT: 8080
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Polit2019
+      POSTGRES_DB: testdb
+      POSTGRES_PORT: 5432
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Polit2019
+      POSTGRES_DB: testdb

@@ -10,7 +10,7 @@ const dbconfig = {
     acquire: 30000,
     idle: 10000
   },
-  PORT: 4800
+  PORT: 5432
 };
 
 module.exports = dbconfig;
