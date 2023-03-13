@@ -10,16 +10,16 @@ services:
     depends_on:
       - db
     environment:
-      PORT: 8080
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Polit2019
-      POSTGRES_DB: testdb
-      POSTGRES_PORT: 5432
+      PORT: ${PORT}
+      POSTGRES_USER: ${POSTGRES_USER}      
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT}
   db:
     image: postgres:latest
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Polit2019
-      POSTGRES_DB: testdb
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}

@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const dbconfig = require('../config/db.config')
 
 const sequelize = new Sequelize(dbconfig.DB, dbconfig.USER, dbconfig.PASSWORD, {
-  host: dbconfig.HOST,
+  host: process.env.HOST,
   dialect: dbconfig.dialect,
   pool: {
     max: dbconfig.pool.max,
@@ -10,7 +10,7 @@ const sequelize = new Sequelize(dbconfig.DB, dbconfig.USER, dbconfig.PASSWORD, {
     acquire: dbconfig.pool.acquire,
     idle: dbconfig.pool.idle
   },
-  port: dbconfig.PORT
+  port: process.env.POSTGRES_PORT
 })
 
 const db = {};
