@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize');
 const dbconfig = require('../config/db.config')
 
-const sequelize = new Sequelize(dbconfig.DB, dbconfig.USER, dbconfig.PASSWORD, {
-  host: process.env.HOST,
+const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
+  host: process.env.PGHOST,
   dialect: dbconfig.dialect,
   pool: {
     max: dbconfig.pool.max,
