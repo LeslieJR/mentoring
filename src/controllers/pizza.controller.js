@@ -17,10 +17,10 @@ const create = (req, res) => {
 
   Pizza.create(pizza)
     .then((data) => {
-      res.send(data);
+      res.status(201).json({data});
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || "Some error occurred while creating the Pizza.",
       });
     });
@@ -34,17 +34,17 @@ const update = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        res.send({
+        res.status(200).json({
           message: "Pizza was updated successfully.",
         });
       } else {
-        res.send({
+        res.status(404).json({
           message: `Cannot update Pizza with id=${pizza_id}. Maybe Pizza was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || `Error updating Pizza with id=${id}`,
       });
     });
@@ -53,10 +53,10 @@ const update = (req, res) => {
 const getAll = (req, res) => {
   Pizza.findAll()
     .then((data) => {
-      res.send(data);
+      res.status(200).json({data});
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || "Some error occurred while retrieving pizzas.",
       });
     });
@@ -68,15 +68,15 @@ const getOne = (req, res) => {
   Pizza.findByPk(pizza_id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.status(200).json({data});
       } else {
-        res.status(404).send({
+        res.status(404).json({
           message: `Cannot find Pizza with id=${pizza_id}.`,
         });
       }
     })
     .catch((err) => {
-      res.status(500).send({
+      res.status(500).json({
         message: err.message || `Error retrieving Pizza with id=${pizza_id}`,
       });
     });
@@ -89,17 +89,17 @@ const remove = (req, res) => {
       where: { id: pizza_id }
     }).then(num => {
         if (num == 1) {
-          res.send({
+          res.status(204).json({
             message: "Pizza was deleted successfully!"
           });
         } else {
-          res.send({
+          res.status(404).json({
             message: `Cannot delete Pizza with id=${pizza_id}. Maybe Pizza was not found!`
           });
         }
       })
       .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
           message: err.message || `Could not delete Pizza with id=${pizza_id}`
         });
       });
@@ -111,10 +111,10 @@ const remove = (req, res) => {
         truncate: false
       })
         .then(nums => {
-          res.send({ message: `${nums} Pizzas were deleted successfully!` });
+          res.status(204).json({ message: `${nums} Pizzas were deleted successfully!` });
         })
         .catch(err => {
-          res.status(500).send({
+          res.status(500).json({
             message:
               err.message || "Some error occurred while removing all pizzas."
           });
