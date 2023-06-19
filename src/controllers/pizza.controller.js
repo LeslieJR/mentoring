@@ -1,11 +1,13 @@
-const {Pizza} = require("../models");
-/* 
+import { Pizza } from "../models";
 
-*/
 const create = async (req, res) => {
   try {
+    console.log(req.body)
     const { name, description } = req.body;
-    const pizza = await Pizza.create({ name, description });
+
+    const pizza = await Pizza.create(
+      { name, description });
+    console.log('pizza:',pizza)
     res.status(201).json(pizza);
   } catch (error) {
     console.error(error);
@@ -37,8 +39,8 @@ const update = (req, res) => {
     });
 };
 
-const getAll = (req, res) => {
-  Pizza.findAll()
+const getAll = async (req, res) => {
+  await Pizza.findAll()
     .then((data) => {
       res.status(200).json({data});
     })
@@ -108,7 +110,7 @@ const remove = (req, res) => {
         });
   };
 
-module.exports = {
+export default {
     create,
     update,
     getOne,

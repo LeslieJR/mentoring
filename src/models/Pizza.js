@@ -1,8 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+import { Model } from 'sequelize';
+export default (sequelize, DataTypes) => {
   class Pizza extends Model {
     /**
      * Helper method for defining associations.
@@ -14,7 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Pizza.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter a izza name',
+      },
+      unique: {
+        args: true,
+        msg: 'This pizza already exists',
+      },
+    },
     description: DataTypes.STRING,
     created_on: DataTypes.STRING
   }, {

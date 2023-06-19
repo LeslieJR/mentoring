@@ -2,16 +2,18 @@
   "name": "mentoring",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node src",
-    "dev": "nodemon src",
-    "test": "jest --detectOpenHandles"
+    "start": "node index.js",
+    "dev": "nodemon -r dotenv/config src",
+    "test": "jest --detectOpenHandles",
+    "db:create": "npx sequelize-cli db:create"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/register": "^7.22.5",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -20,11 +22,11 @@
     "pg": "^8.11.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1",
-    "sequelize-cli": "^6.6.1",
     "supertest": "^6.3.3"
   },
   "devDependencies": {
     "jest": "^29.5.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.6.1"
   }
 }
