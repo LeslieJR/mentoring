@@ -1,29 +1,16 @@
-const db = require("../models");
-const Pizza = db.pizza;
-const Op = db.Sequelize.Op;
+const {Pizza} = require("../models");
+/* 
 
-const create = (req, res) => {
-  if (!req.body.name && !req.body.description) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
+*/
+const create = async (req, res) => {
+  try {
+    const { name, description } = req.body;
+    const pizza = await Pizza.create({ name, description });
+    res.status(201).json(pizza);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-
-  const pizza = {
-    name: req.body.name,
-    description: req.body.description,
-  };
-
-  Pizza.create(pizza)
-    .then((data) => {
-      res.status(201).json({data});
-    })
-    .catch((err) => {
-      res.status(500).json({
-        message: err.message || "Some error occurred while creating the Pizza.",
-      });
-    });
 };
 
 const update = (req, res) => {

@@ -1,15 +1,43 @@
-const app = require('./server')
 const request = require('supertest') 
+const app = require('./server');
+
+let server;
+
+beforeAll(() => {
+  server = app.listen(8080, () => {
+    console.log('Server running on port 8080');
+  });
+});
+
+afterAll((done) => {
+  server.close(done);
+});
+
 describe('Testing Endpoints', () => {
   it('should create a new pizza', async () => {
-    const res = await request(app)
+    
+    const pizza = {
+      name: 'Pepperonni',
+      description: 'Pizza with pepperonni'
+    }
+    const response = await request(app)
       .post('/pizza/')
-      .send({
-        name: 'Pepperonni',
-        description: 'Pizza with pepperonni'
-      })
-    expect(res.statusCode).toEqual(201)
-  }, 2000)
+      .send(pizza);
+
+    expect(response.statusCode).toBe(201)
+  })
+
+  /* 
+  describe('Test the POST /api/users endpoint', () => {
+  test('It should create a new user', async () => {
+    const user = { name: 'John Doe', email: 'john@example.com' };
+    const response = await request(app)
+      .post('/api/users')
+      .send(user);
+    expect(response.statusCode).toBe(201);
+  });
+});
+  */
   /* it('should fetch a single pizza', async () => {
     const pizzaId = 1;
     const res = await request(app).get(`/pizza/getOne/${pizzaId}`)
