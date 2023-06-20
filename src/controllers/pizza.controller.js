@@ -1,6 +1,5 @@
 const db = require("../models");
 const Pizza = db.pizza;
-const Op = db.Sequelize.Op;
 
 const create = (req, res) => {
   if (!req.body.name && !req.body.description) {
