@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import { pizza } from '../controllers';
+import { methods } from '../controllers/pizza.controller.js';
 
 const router = Router();
 
-router.post('/', pizza.create);
-router.get('/getAll', pizza.getAll)
-router.get('/getOne/:pizza_id', pizza.getOne)
-router.put('/update/:pizza_id', pizza.update)
-router.delete('/remove/:pizza_id', pizza.remove)
-router.delete('/removeAll', pizza.removeAll)
+router.post('/', methods.create);
+router.get('/getAll',methods.getAll)
+router.get('/getOne/:pizza_id',methods.getOne)
+router.put('/update/:pizza_id', methods.update)
+router.delete('/remove/:pizza_id', methods.remove)
+router.delete('/removeAll', methods.removeAll)
 
 
-export default router;
+export const routes = router;

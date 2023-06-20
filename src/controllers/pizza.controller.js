@@ -1,4 +1,6 @@
-import { Pizza } from "../models";
+import model from '../models/index.cjs';
+
+const { Pizza } = model;
 
 const create = async (req, res) => {
   try {
@@ -110,7 +112,7 @@ const remove = (req, res) => {
         });
   };
 
-export default {
+export const methods = {
     create,
     update,
     getOne,
